@@ -1,0 +1,17 @@
+generator.exe: generator.o 
+		g++ -std=c++17 generator.o -o generator.exe
+
+generator.o: generator.cpp lz_compressor.hpp lz_decompressor.hpp match.hpp wilhelmus.txt
+		g++ -std=c++17 -c generator.cpp -o generator.o
+
+build: generator.exe
+
+clean: 
+		rm -f *.o generator.exe
+
+run: generator.exe 
+	./generator.exe
+
+compressed.asm: generator.exe
+	./generator.exe
+
