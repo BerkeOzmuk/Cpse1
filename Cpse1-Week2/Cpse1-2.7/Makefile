@@ -24,9 +24,12 @@ SOURCES += rtttl_player.cpp
 HEADERS += note_player_pc.hpp
 SOURCES += note_player_pc.cpp
 
-melody.cpp : generator.cpp
-	make -f maakfile melody.cpp
+HEADERS += song.hpp
+
 # other places to look for files for this project
+song.hpp: generator.cpp
+	make -f maakFile song.hpp
+
 SEARCH  := 
 
 # set REATIVE to the next higher directory 

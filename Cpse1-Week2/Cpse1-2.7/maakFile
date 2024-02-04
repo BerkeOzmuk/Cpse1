@@ -1,19 +1,20 @@
-generator.exe: generator.o rtttl_player.o
-                g++ -std=c++17 generator.o rtttl_player.o -o generator.exe
+generator.exe: generator.o note_player_pc.o rtttl_player.o
+		g++ -std=c++17 generator.o note_player_pc.o rtttl_player.o -o generator.exe
 
 generator.o: generator.cpp note.hpp note_player_pc.hpp fur_elise.hpp rtttl_player.hpp 
-                g++ -std=c++17 -c generator.cpp -o generator.o
+		g++ -std=c++17 -c generator.cpp -o generator.o
 
 rtttl_player.o: rtttl_player.cpp rtttl_player.hpp
-                g++ -std=c++17 -c rtttl_player.cpp -o rtttl_player.o
+		g++ -std=c++17 -c rtttl_player.cpp -o rtttl_player.o
 
 build: generator.exe
 
 clean: 
-        rm -f *.o generator.exe
+	rm -f *.o generator.exe
 
 run: generator.exe 
-        ./generator.exe
+	./generator.exe
 
-melody.cpp: generator.exe 
-        ./generator.exe            
+song.hpp: generator.exe 
+	./generator.exe > song.hpp       
+

@@ -7,7 +7,7 @@
 
 class melody {
 public:
-   virtual void play( note_player & p ) {};
+   virtual void play( note_player & p );
 };
 
 #endif

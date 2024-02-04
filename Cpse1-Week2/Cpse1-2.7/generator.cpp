@@ -3,6 +3,7 @@
 #include <fstream>
 #include "note_player_pc.hpp"
 
+
 const char sos[]          = "SOS:d=4,o=5,b=60:a,p,a,p,a,p,2a.,p,2a.,p,2a.,p,a,p,a,p,a";
 const char let_it_be[]    = "Beatles Let It Be:d=4,o=5,b=100:16e6,8d6,c6,16e6,8g6,8a6,8g.6,16g6,8g6,8e6,16d6,8c6,16a,8g,e.6,p,8e6,16e6,8f.6,8e6,8e6,8d6,16p,16e6,16d6,8d6,2c.6";
 const char muppets[]      = "Muppets:d=4,o=5,b=250:c6,c6,a,b,8a,b,g,p,c6,c6,a,8b,8a,8p,g.,p,e,e,g,f,8e,f,8c6,8c,8d,e,8e,8e,8p,8e,g,2p,c6,c6,a,b,8a,b,g,p,c6,c6,a,8b,a,g.,p,e,e,g,f,8e,f,8c6,8c,8d,e,8e,d,8d,c";
@@ -12,23 +13,24 @@ const char one[]          = "NumberOne:d=16,o=5,b=168:4f.,8c6,16b5,16c6,16b5,16c
 int main( void ){	
    
    std::ofstream myFile;
-   myFile.open("melody.cpp");
-   myFile << "#include <melody.hpp> \n \n" << "void melody::play( note_player & p ){ \n";
+   myFile.open("song.hpp");
+   myFile << "#ifndef _SONG_HPP \n#define _SONG_HPP \n#include \"melody.hpp\"\n \n";
+   myFile << "class song: public melody { \npublic: \nvoid play(note_player & p){ \n";
    myFile.close();
    auto p = note_player_pc();
    
-   if( 1 ){
+   if( 0 ){
       auto fe = fur_elise();
       fe.play( p );
    }      
    
    if( 0 ){ rtttl_play( p, sos ); }   
-   if( 0 ){ rtttl_play( p, let_it_be );  }
+   if( 1 ){ rtttl_play( p, let_it_be );  }
    if( 0 ){ rtttl_play( p, muppets );  }
    if( 0 ){ rtttl_play( p, rickroll );  }
    if( 0 ){ rtttl_play( p, one );  }
 
-   myFile.open("melody.cpp", std::ofstream::app);
-   myFile << "}";
+   myFile.open("song.hpp", std::ofstream::app);
+   myFile << "  } \n}; \n#endif";
    myFile.close();
 }
