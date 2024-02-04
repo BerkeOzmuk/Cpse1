@@ -16,7 +16,7 @@ private:
 public:
     void add(T value){
 
-        if(!contains(value) && size != 10){
+        if(!contains(value) && size != arrSize){
             intSet[size] = value;
             size++;
         }
@@ -69,9 +69,18 @@ public:
     }
 
     friend std::ostream & operator<<( std::ostream & lhs, const integerSet & rhs){
-        for( int i = 0; i < rhs.size; i++ ){
-            lhs << rhs.intSet[i] << ", ";
+        lhs << "[";
+        for(int i = 0; i < arrSize; i++){
+            if(rhs.intSet[i] == '\0'){
+                lhs << "None";
+            }
+            else{
+                lhs << rhs.intSet[i];
+            }
+            lhs << ", ";
         }
+
+        lhs << "]";
         return lhs;
     };
     
